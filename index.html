@@ -4,72 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Fonsichu 🔴 Stream</title>
+  <title>Fonsichu · En directo</title>
 
   <style>
+    :root {
+      --fondo: #0e0e10;
+      --barra: #18181b;
+      --borde: #2f2f35;
+      --texto: #efeff1;
+      --morado: #9147ff;
+      --verde-kick: #53fc18;
+      --ancho-chat: 340px;
+      --alto-barra: 56px;
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
     }
 
     body {
-      margin: 0;
-      background: #0b0b0f;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      text-align: center;
-      padding: 25px;
-      background: #15151d;
-      border-bottom: 2px solid #53fc18;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    .live {
-      color: #53fc18;
-      font-size: 0.9rem;
-      margin-top: 8px;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    /* STREAM DE KICK */
-    .stream {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      margin-bottom: 30px;
-      border-radius: 12px;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
       overflow: hidden;
     }
 
-    .stream iframe {
+    /* ESTRUCTURA PRINCIPAL */
+    .pagina {
+      display: grid;
+      grid-template-columns: 1fr var(--ancho-chat);
+      grid-template-rows: 1fr var(--alto-barra);
+
+      grid-template-areas:
+        "video chat"
+        "barra barra";
+
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* STREAM DE KICK */
+    .video {
+      grid-area: video;
+      background: #000;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .video iframe {
       width: 100%;
       height: 100%;
       border: 0;
     }
 
     /* CHAT DE TWITCH */
-    h2 {
-      margin-bottom: 12px;
-    }
-
     .chat {
-      width: 100%;
-      height: 500px;
-      background: #18181b;
-      border-radius: 12px;
-      overflow: hidden;
+      grid-area: chat;
+      background: var(--barra);
+      border-left: 1px solid var(--borde);
+      min-height: 0;
     }
 
     .chat iframe {
@@ -78,51 +77,162 @@
       border: 0;
     }
 
-    /* MÓVIL */
-    @media (max-width: 600px) {
-      .container {
-        padding: 10px;
+    /* BARRA INFERIOR */
+    .barra {
+      grid-area: barra;
+      background: var(--barra);
+      border-top: 1px solid var(--borde);
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 0 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .canal {
+      font-weight: bold;
+      margin-right: auto;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .directo {
+      background: #e91916;
+      color: white;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      padding: 4px 7px;
+      border-radius: 4px;
+    }
+
+    .nombre {
+      color: var(--verde-kick);
+      font-weight: bold;
+    }
+
+    .boton {
+      color: var(--texto);
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      padding: 8px 12px;
+      border-radius: 6px;
+
+      background: #2f2f35;
+      transition: 0.2s;
+      flex-shrink: 0;
+    }
+
+    .boton:hover {
+      filter: brightness(1.3);
+    }
+
+    .boton.sub {
+      background: var(--morado);
+    }
+
+    /* VERSIÓN MÓVIL */
+    @media (max-width: 900px) {
+
+      body {
+        overflow: auto;
       }
 
-      h1 {
-        font-size: 1.5rem;
+      .pagina {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 600px var(--alto-barra);
+
+        grid-template-areas:
+          "video"
+          "chat"
+          "barra";
+      }
+
+      .video {
+        aspect-ratio: 16 / 9;
       }
 
       .chat {
-        height: 600px;
+        border-left: 0;
+        border-top: 1px solid var(--borde);
+      }
+
+      .canal {
+        display: none;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>FONSICHU 🔴</h1>
-    <div class="live">● STREAM EN DIRECTO</div>
-  </header>
-
-  <main class="container">
+  <div class="pagina">
 
     <!-- STREAM DE KICK -->
-    <div class="stream">
+    <div class="video">
       <iframe
-        src="https://player.kick.com/fonsichu"
-        allowfullscreen>
+        src="https://player.kick.com/fonsichu?autoplay=true"
+        allowfullscreen
+        allow="autoplay; fullscreen; picture-in-picture"
+        title="Directo de Fonsichu en Kick">
       </iframe>
     </div>
+
 
     <!-- CHAT DE TWITCH -->
-    <h2>💬 Chat de Twitch</h2>
-
     <div class="chat">
       <iframe
-        src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io"
-        scrolling="no">
+        src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io&darkpopout"
+        title="Chat de Twitch de Fonsichu">
       </iframe>
     </div>
 
-  </main>
+
+    <!-- BARRA INFERIOR -->
+    <nav class="barra">
+
+      <div class="canal">
+        <span class="directo">EN DIRECTO</span>
+        <span class="nombre">FONSICHU</span>
+      </div>
+
+      <a
+        class="boton sub"
+        href="https://www.twitch.tv/subs/fonsichu"
+        target="_blank"
+        rel="noopener">
+        Suscríbete
+      </a>
+
+      <a
+        class="boton"
+        href="https://kick.com/fonsichu"
+        target="_blank"
+        rel="noopener">
+        Kick
+      </a>
+
+      <a
+        class="boton"
+        href="https://www.twitch.tv/fonsichu"
+        target="_blank"
+        rel="noopener">
+        Twitch
+      </a>
+
+    </nav>
+
+  </div>
 
 </body>
 </html>
