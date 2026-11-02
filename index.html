@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#09090b">
 <title>Fonsichu</title>
 
 <style>
@@ -19,12 +19,19 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: #000;
+  color: white;
   font-family: Arial, sans-serif;
 }
 
+:root {
+  --bar-height: 66px;
+}
+
+/* DISTRIBUCIÓN PRINCIPAL */
+
 .container {
   width: 100%;
-  height: 100dvh;
+  height: calc(100dvh - var(--bar-height));
   display: grid;
   grid-template-columns: minmax(0, 1fr) 350px;
   background: #000;
@@ -44,44 +51,6 @@ html, body {
   border: none;
 }
 
-.fullscreen-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 5;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background: rgba(20, 20, 20, 0.65);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 11px;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  opacity: .65;
-  transition: all .2s ease;
-}
-
-.fullscreen-button:hover {
-  opacity: 1;
-  background: rgba(130, 75, 190, 0.85);
-  border-color: rgba(255,255,255,0.35);
-  transform: scale(1.06);
-}
-
-.fullscreen-button svg {
-  width: 19px;
-  height: 19px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .chat {
   min-width: 0;
   min-height: 0;
@@ -96,6 +65,156 @@ html, body {
   border: none;
 }
 
+/* BOTÓN PANTALLA COMPLETA */
+
+.fullscreen-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(20,20,20,.65);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 11px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  opacity: .65;
+  transition: .2s;
+}
+
+.fullscreen-button:hover {
+  opacity: 1;
+  background: #8145c5;
+  transform: scale(1.06);
+}
+
+.fullscreen-button svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* BARRA INFERIOR */
+
+.taskbar {
+  height: var(--bar-height);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 22px;
+
+  background: #111113;
+  border-top: 1px solid #303034;
+  box-shadow: 0 -5px 25px rgba(0,0,0,.25);
+}
+
+/* INFORMACIÓN DEL CANAL */
+
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.channel-logo {
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#a855f7,#6636bb);
+  font-size: 19px;
+  font-weight: 900;
+  box-shadow: 0 0 15px #8738ce30;
+}
+
+.channel-text {
+  min-width: 0;
+}
+
+.channel-title {
+  font-size: 14px;
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channel-subtitle {
+  font-size: 11px;
+  color: #99949f;
+  margin-top: 4px;
+}
+
+/* ICONOS SOCIALES */
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-link {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: #d8d5dc;
+  background: #242428;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.social-link svg {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
+.social-link:hover {
+  color: white;
+  background: #39313f;
+  border-color: #8c54c8;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px #0006;
+}
+
+.social-link.youtube:hover { background: #c4302b; }
+.social-link.twitch:hover { background: #6441a5; }
+.social-link.kick:hover { background: #238c4b; }
+.social-link.tiktok:hover { background: #292929; }
+.social-link.x:hover { background: #333; }
+
+.social-link:focus-visible,
+.fullscreen-button:focus-visible {
+  outline: 2px solid #b875ff;
+  outline-offset: 3px;
+}
+
+/* PANTALLA COMPLETA */
+
 .video-area:fullscreen {
   width: 100%;
   height: 100%;
@@ -107,15 +226,21 @@ html, body {
   height: 100%;
 }
 
+/* MÓVIL */
+
 @media (max-width: 700px) {
+  :root {
+    --bar-height: 60px;
+  }
+
   html, body {
-    overflow: auto;
+    overflow: hidden;
   }
 
   .container {
     display: flex;
     flex-direction: column;
-    height: 100dvh;
+    height: calc(100dvh - var(--bar-height));
   }
 
   .video-area {
@@ -129,6 +254,58 @@ html, body {
     border-left: none;
     border-top: 1px solid #252525;
   }
+
+  .taskbar {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .channel-logo {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .channel-title {
+    font-size: 12px;
+  }
+
+  .channel-subtitle {
+    font-size: 10px;
+  }
+
+  .socials {
+    gap: 5px;
+  }
+
+  .social-link {
+    width: 34px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 390px) {
+  .channel-subtitle {
+    display: none;
+  }
+
+  .taskbar {
+    padding: 0 7px;
+  }
+
+  .socials {
+    gap: 3px;
+  }
+
+  .social-link {
+    width: 30px;
+  }
 }
 </style>
 </head>
@@ -137,22 +314,18 @@ html, body {
 
 <div class="container">
 
-  <!-- REPRODUCTOR KICK -->
+  <!-- KICK -->
   <section class="video-area" id="videoArea">
 
     <iframe
-      id="kickPlayer"
       src="https://player.kick.com/fonsichu"
       title="Fonsichu"
       allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen
-      sandbox="allow-scripts allow-same-origin allow-presentation">
+      allowfullscreen>
     </iframe>
 
-    <!-- PANTALLA COMPLETA -->
     <button
       class="fullscreen-button"
-      id="fullscreenButton"
       onclick="toggleFullscreen()"
       aria-label="Pantalla completa"
       title="Pantalla completa">
@@ -165,19 +338,88 @@ html, body {
       </svg>
 
     </button>
-
   </section>
 
-  <!-- CHAT TWITCH -->
+  <!-- TWITCH -->
   <section class="chat">
     <iframe
       src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io&darkpopout"
-      title="Chat de Twitch"
-      allow="clipboard-write; encrypted-media">
+      title="Chat de Twitch">
     </iframe>
   </section>
 
 </div>
+
+<!-- BARRA INFERIOR -->
+<footer class="taskbar">
+
+  <div class="channel-info">
+    <div class="channel-logo">F</div>
+
+    <div class="channel-text">
+      <div class="channel-title">
+        Fonsichu · En directo
+      </div>
+      <div class="channel-subtitle">
+        Bienvenido a mi comunidad 💜
+      </div>
+    </div>
+  </div>
+
+  <nav class="socials" aria-label="Redes sociales">
+
+    <!-- YOUTUBE -->
+    <a class="social-link youtube"
+       href="https://www.youtube.com/@fonsichu"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="YouTube" title="YouTube">
+      <svg viewBox="0 0 24 24">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/>
+      </svg>
+    </a>
+
+    <!-- TWITCH -->
+    <a class="social-link twitch"
+       href="https://www.twitch.tv/fonsichu"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Twitch" title="Twitch">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 2 1 6v15h5v3h4l3-3h4l6-6V2H4Zm17 12-4 4h-5l-3 3v-3H4V4h17v10ZM17 7h-2v6h2V7Zm-5 0h-2v6h2V7Z"/>
+      </svg>
+    </a>
+
+    <!-- KICK -->
+    <a class="social-link kick"
+       href="https://kick.com/fonsichu"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Kick" title="Kick">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 2h7v7l5-7h7l-7 9 7 11h-8l-4-7v7H3V2Z"/>
+      </svg>
+    </a>
+
+    <!-- TIKTOK -->
+    <a class="social-link tiktok"
+       href="https://www.tiktok.com/@fonsichu"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="TikTok" title="TikTok">
+      <svg viewBox="0 0 24 24">
+        <path d="M19.6 6.2a5.8 5.8 0 0 1-3.5-4.8h-4.2v15.2a3.2 3.2 0 1 1-3.2-3.2c.4 0 .8.1 1.1.2V9.3a7.5 7.5 0 1 0 6.3 7.4V9a10 10 0 0 0 5.8 1.8V6.7c-.8 0-1.6-.2-2.3-.5Z"/>
+      </svg>
+    </a>
+
+    <!-- X -->
+    <a class="social-link x"
+       href="https://x.com/fonsichu_"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="X" title="X">
+      <svg viewBox="0 0 24 24">
+        <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.4 6.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/>
+      </svg>
+    </a>
+
+  </nav>
+</footer>
 
 <script>
 const videoArea = document.getElementById("videoArea");
