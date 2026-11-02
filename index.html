@@ -3,61 +3,258 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fonsichu Multichat</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fonsichu | Directo</title>
+  <meta name="theme-color" content="#0d0b13">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top left, #281344 0%, transparent 45%),
+        #0d0b13;
+      color: #fff;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    header {
+      height: 76px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ffffff12;
+      background: #100d18cc;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #b66aff;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #ff5b75;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      background: #ff4565;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #ff4565;
+    }
+
+    main {
+      max-width: 1500px;
+      margin: 35px auto;
+      padding: 0 24px;
+    }
+
+    .heading {
+      margin-bottom: 22px;
+    }
+
+    .heading h1 {
+      font-size: clamp(25px, 4vw, 38px);
+      margin-bottom: 8px;
+    }
+
+    .heading p {
+      color: #a9a2b5;
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 370px;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: #171320;
+      border: 1px solid #ffffff12;
+      border-radius: 17px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px #0005;
+    }
+
+    .panel-title {
+      height: 55px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ffffff12;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .kick-label {
+      color: #53e2a0;
+    }
+
+    .twitch-label {
+      color: #b78aff;
+    }
+
+    .player {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #08070b;
+    }
+
+    .player iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .stream-info {
+      padding: 20px;
+    }
+
+    .stream-info h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .stream-info p {
+      color: #aaa3b4;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .chat {
+      height: 100%;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat iframe {
+      width: 100%;
+      flex: 1;
+      min-height: 545px;
+      border: 0;
+      background: #100e16;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: #716b7b;
+      font-size: 12px;
+    }
+
+    footer span {
+      color: #b66aff;
+    }
+
+    @media (max-width: 850px) {
+      main {
+        margin-top: 24px;
+        padding: 0 14px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .chat {
+        min-height: 570px;
+      }
+
+      .chat iframe {
+        min-height: 515px;
+      }
+
+      header {
+        padding: 0 18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <header>
-    <h1>FONSI<span>CHU</span></h1>
-    <span class="live">● EN DIRECTO</span>
+    <div class="logo">FONSI<span>CHU</span></div>
+    <div class="live">
+      <span class="dot"></span>
+      DIRECTO
+    </div>
   </header>
 
   <main>
-    <section class="stream">
-      <iframe
-        src="https://player.kick.com/fonsichu"
-        title="Directo de Fonsichu"
-        allowfullscreen>
-      </iframe>
+    <section class="heading">
+      <h1>¡Bienvenido al directo! 💜</h1>
+      <p>Disfruta del stream y habla con la comunidad.</p>
     </section>
 
-    <section class="chat">
-      <div class="chat-title">
-        <h2>CHAT UNIFICADO</h2>
-        <span>TWITCH + KICK</span>
+    <section class="layout">
+
+      <!-- STREAM DE KICK -->
+      <div class="panel">
+        <div class="panel-title">
+          <span>▶ STREAM</span>
+          <span class="kick-label">KICK</span>
+        </div>
+
+        <div class="player">
+          <iframe
+            src="https://player.kick.com/fonsichu"
+            title="Directo de Fonsichu en Kick"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="stream-info">
+          <h2>Fonsichu 💜</h2>
+          <p>
+            ¡Ponte cómodo, disfruta del directo y participa
+            en el chat!
+          </p>
+        </div>
       </div>
 
-      <div class="filters">
-        <button data-filter="all" class="active">Todos</button>
-        <button data-filter="twitch">Twitch</button>
-        <button data-filter="kick">Kick</button>
+      <!-- CHAT DE TWITCH -->
+      <div class="panel chat">
+        <div class="panel-title">
+          <span>💬 CHAT DE LA COMUNIDAD</span>
+          <span class="twitch-label">TWITCH</span>
+        </div>
+
+        <iframe
+          src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io&darkpopout"
+          title="Chat de Twitch de Fonsichu">
+        </iframe>
       </div>
 
-      <div id="messages">
-        <p class="system">Conectando con los chats...</p>
-      </div>
-
-      <form id="chatForm">
-        <select id="platform">
-          <option value="twitch">Enviar a Twitch</option>
-          <option value="kick">Enviar a Kick</option>
-        </select>
-
-        <input
-          id="messageInput"
-          maxlength="500"
-          placeholder="Inicia sesión para escribir..."
-          disabled>
-
-        <button id="sendButton" disabled>Enviar</button>
-      </form>
-
-      <p id="status">Conectando...</p>
     </section>
   </main>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="app.js"></script>
+  <footer>
+    Hecho con <span>♥</span> para la comunidad de Fonsichu
+  </footer>
+
 </body>
 </html>
