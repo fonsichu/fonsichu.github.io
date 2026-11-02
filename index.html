@@ -27,7 +27,7 @@ html, body {
   --bar-height: 66px;
 }
 
-/* DISTRIBUCIÓN */
+/* DISTRIBUCIÓN PRINCIPAL */
 
 .container {
   width: 100%;
@@ -147,7 +147,7 @@ html, body {
   white-space: nowrap;
 }
 
-/* REDES */
+/* ICONOS DE REDES */
 
 .socials {
   display: flex;
@@ -162,11 +162,11 @@ html, body {
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  color: white;
+  color: #d8d5dc;
   background: #242428;
   border: 1px solid transparent;
   text-decoration: none;
-  transition: .2s ease;
+  transition: all .2s ease;
 }
 
 .social-link svg {
@@ -176,22 +176,33 @@ html, body {
 }
 
 .social-link:hover {
+  color: white;
   transform: translateY(-3px);
+  border-color: #ffffff35;
   box-shadow: 0 4px 14px #0006;
-  border-color: #ffffff50;
 }
 
-.youtube { background: #c4302b; }
-.twitch { background: #6441a5; }
-.kick { background: #238c4b; }
-.tiktok { background: #000000; }
-.x { background: #1686df; }
+/* COLORES AL PASAR EL RATÓN */
 
-.youtube:hover { background: #e12c25; }
-.twitch:hover { background: #7952c9; }
-.kick:hover { background: #2bbd61; }
-.tiktok:hover { background: #222222; }
-.x:hover { background: #0868bd; }
+.social-link.youtube:hover {
+  background: #c4302b;
+}
+
+.social-link.twitch:hover {
+  background: #6441a5;
+}
+
+.social-link.kick:hover {
+  background: #238c4b;
+}
+
+.social-link.tiktok:hover {
+  background: #000000;
+}
+
+.social-link.x:hover {
+  background: #1686df;
+}
 
 /* ACCESIBILIDAD */
 
@@ -299,7 +310,7 @@ html, body {
 
 <div class="container">
 
-  <!-- KICK -->
+  <!-- REPRODUCTOR KICK -->
   <section class="video-area" id="videoArea">
 
     <iframe
@@ -325,7 +336,7 @@ html, body {
     </button>
   </section>
 
-  <!-- TWITCH -->
+  <!-- CHAT TWITCH -->
   <section class="chat">
     <iframe
       src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io&darkpopout"
