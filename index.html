@@ -27,7 +27,7 @@ html, body {
   --bar-height: 66px;
 }
 
-/* DISTRIBUCIÓN PRINCIPAL */
+/* DISTRIBUCIÓN */
 
 .container {
   width: 100%;
@@ -83,6 +83,7 @@ html, body {
   border-radius: 11px;
   cursor: pointer;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: .65;
   transition: .2s;
 }
@@ -112,19 +113,17 @@ html, body {
   bottom: 0;
   left: 0;
   z-index: 20;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 0 22px;
-
   background: #111113;
   border-top: 1px solid #303034;
   box-shadow: 0 -5px 25px rgba(0,0,0,.25);
 }
 
-/* INFORMACIÓN DEL CANAL */
+/* LOGO Y NOMBRE */
 
 .channel-info {
   display: flex;
@@ -134,38 +133,21 @@ html, body {
 }
 
 .channel-logo {
-  width: 39px;
-  height: 39px;
-  flex: 0 0 39px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: linear-gradient(135deg,#a855f7,#6636bb);
-  font-size: 19px;
-  font-weight: 900;
-  box-shadow: 0 0 15px #8738ce30;
-}
-
-.channel-text {
-  min-width: 0;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  object-fit: contain;
+  border-radius: 9px;
 }
 
 .channel-title {
-  font-size: 14px;
-  font-weight: 750;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.channel-subtitle {
-  font-size: 11px;
-  color: #99949f;
-  margin-top: 4px;
-}
-
-/* ICONOS SOCIALES */
+/* REDES */
 
 .socials {
   display: flex;
@@ -180,7 +162,7 @@ html, body {
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  color: #d8d5dc;
+  color: white;
   background: #242428;
   border: 1px solid transparent;
   text-decoration: none;
@@ -194,18 +176,24 @@ html, body {
 }
 
 .social-link:hover {
-  color: white;
-  background: #39313f;
-  border-color: #8c54c8;
   transform: translateY(-3px);
   box-shadow: 0 4px 14px #0006;
+  border-color: #ffffff50;
 }
 
-.social-link.youtube:hover { background: #c4302b; }
-.social-link.twitch:hover { background: #6441a5; }
-.social-link.kick:hover { background: #238c4b; }
-.social-link.tiktok:hover { background: #292929; }
-.social-link.x:hover { background: #333; }
+.youtube { background: #c4302b; }
+.twitch { background: #6441a5; }
+.kick { background: #238c4b; }
+.tiktok { background: #000000; }
+.x { background: #1686df; }
+
+.youtube:hover { background: #e12c25; }
+.twitch:hover { background: #7952c9; }
+.kick:hover { background: #2bbd61; }
+.tiktok:hover { background: #222222; }
+.x:hover { background: #0868bd; }
+
+/* ACCESIBILIDAD */
 
 .social-link:focus-visible,
 .fullscreen-button:focus-visible {
@@ -231,10 +219,6 @@ html, body {
 @media (max-width: 700px) {
   :root {
     --bar-height: 60px;
-  }
-
-  html, body {
-    overflow: hidden;
   }
 
   .container {
@@ -268,10 +252,7 @@ html, body {
 
   .channel-title {
     font-size: 12px;
-  }
-
-  .channel-subtitle {
-    font-size: 10px;
+    letter-spacing: 1px;
   }
 
   .socials {
@@ -291,12 +272,16 @@ html, body {
 }
 
 @media (max-width: 390px) {
-  .channel-subtitle {
-    display: none;
-  }
-
   .taskbar {
     padding: 0 7px;
+  }
+
+  .channel-info {
+    gap: 6px;
+  }
+
+  .channel-title {
+    font-size: 10px;
   }
 
   .socials {
@@ -351,19 +336,16 @@ html, body {
 </div>
 
 <!-- BARRA INFERIOR -->
+
 <footer class="taskbar">
 
   <div class="channel-info">
-    <div class="channel-logo">F</div>
+    <img
+      src="logo.png"
+      alt="Logo Fonsichu"
+      class="channel-logo">
 
-    <div class="channel-text">
-      <div class="channel-title">
-        Fonsichu · En directo
-      </div>
-      <div class="channel-subtitle">
-        Bienvenido a mi comunidad 💜
-      </div>
-    </div>
+    <div class="channel-title">FONSICHU</div>
   </div>
 
   <nav class="socials" aria-label="Redes sociales">
@@ -408,13 +390,13 @@ html, body {
       </svg>
     </a>
 
-    <!-- X -->
+    <!-- TWITTER CLÁSICO -->
     <a class="social-link x"
        href="https://x.com/fonsichu_"
        target="_blank" rel="noopener noreferrer"
-       aria-label="X" title="X">
+       aria-label="Twitter" title="Twitter">
       <svg viewBox="0 0 24 24">
-        <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.4L1.8 2h6.5l4.4 6.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/>
+        <path d="M23.95 4.57a10 10 0 0 1-2.83.78 4.94 4.94 0 0 0 2.16-2.72 9.9 9.9 0 0 1-3.13 1.2 4.92 4.92 0 0 0-8.39 4.49A13.98 13.98 0 0 1 1.64 3.16a4.93 4.93 0 0 0 1.52 6.58 4.9 4.9 0 0 1-2.23-.62v.06a4.93 4.93 0 0 0 3.95 4.83 4.9 4.9 0 0 1-2.22.08 4.94 4.94 0 0 0 4.6 3.42A9.9 9.9 0 0 1 0 19.54a13.94 13.94 0 0 0 7.55 2.21c9.05 0 14-7.5 14-14v-.64a10 10 0 0 0 2.46-2.54Z"/>
       </svg>
     </a>
 
