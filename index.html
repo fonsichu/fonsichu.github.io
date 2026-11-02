@@ -3,147 +3,107 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fonsichu</title>
-<meta name="theme-color" content="#100d17">
-
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:#100d17;
-  color:#f8f5fc;
-  font-family:Inter,Arial,sans-serif;
-  min-height:100vh;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-header{
-  height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 5%;
-  border-bottom:1px solid #ffffff12;
-  background:#15111e;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: Arial, sans-serif;
 }
-.logo{font-size:25px;font-weight:900;letter-spacing:-1px}
-.logo span{color:#b875ff}
-.profile{display:flex;align-items:center;gap:10px;color:#c9c1d3;font-size:13px}
-.avatar{
-  width:34px;height:34px;border-radius:50%;
-  background:linear-gradient(135deg,#a34dff,#ed78bb);
-  display:grid;place-items:center;font-weight:bold;
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  width: 100%;
+  height: 100vh;
 }
-main{max-width:1550px;margin:35px auto;padding:0 22px}
-.layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 360px;
-  gap:16px;
-  align-items:stretch;
+
+.video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  min-width: 0;
 }
-.player-area,.messages{
-  background:#191521;
-  border:1px solid #ffffff12;
-  border-radius:15px;
-  overflow:hidden;
+
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
-.player{
-  width:100%;
-  aspect-ratio:16/9;
-  background:#08070b;
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #0e0e10;
+  border-left: 1px solid #242424;
 }
-.player iframe{width:100%;height:100%;border:0}
-.stream-bottom{
-  display:flex;align-items:center;gap:13px;padding:17px;
+
+.chat iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
-.stream-avatar{
-  width:45px;height:45px;border-radius:50%;
-  background:linear-gradient(135deg,#8e43ed,#ed70b5);
-  display:grid;place-items:center;font-size:20px;font-weight:bold;
-}
-.stream-name{font-size:15px;font-weight:750}
-.stream-sub{font-size:12px;color:#9f96aa;margin-top:5px}
-.messages{
-  display:flex;flex-direction:column;
-  min-height:500px;height:100%;
-}
-.messages-inner{
-  padding:19px 15px;
-  display:flex;flex-direction:column;gap:17px;
-  flex:1;
-}
-.message{font-size:13px;line-height:1.55;overflow-wrap:anywhere}
-.username{font-weight:750;color:#c18aff;margin-right:6px}
-.message:nth-child(3n) .username{color:#75d8ed}
-.message:nth-child(3n+1) .username{color:#f1a3c8}
-.message:nth-child(3n+2) .username{color:#a8dc91}
-.chat-input{
-  border-top:1px solid #ffffff12;
-  padding:13px;
-}
-.chat-input input{
-  width:100%;height:43px;
-  background:#262131;border:1px solid #ffffff15;
-  border-radius:9px;padding:0 13px;
-  color:white;font-size:13px;outline:none;
-}
-.chat-input input::placeholder{color:#8c8398}
-@media(max-width:850px){
-  main{margin:18px auto;padding:0 12px}
-  .layout{grid-template-columns:1fr}
-  .messages{min-height:470px}
-  header{padding:0 17px}
+
+@media (max-width: 700px) {
+  html, body {
+    overflow: auto;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+  }
+
+  .video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex: none;
+  }
+
+  .video iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chat {
+    flex: 1;
+    min-height: 0;
+    border-left: none;
+    border-top: 1px solid #242424;
+  }
 }
 </style>
 </head>
 
 <body>
-<header>
-  <div class="logo">FONSI<span>CHU</span></div>
-  <div class="profile">
-    <div class="avatar">F</div>
-    <span>fonsichu</span>
+<div class="container">
+
+  <div class="video">
+    <iframe
+      src="https://player.kick.com/fonsichu"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
   </div>
-</header>
 
-<main>
-  <div class="layout">
-
-    <section class="player-area">
-      <div class="player">
-        <iframe
-          src="https://player.kick.com/fonsichu"
-          title="Fonsichu"
-          allow="autoplay; fullscreen"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="stream-bottom">
-        <div class="stream-avatar">F</div>
-        <div>
-          <div class="stream-name">fonsichu</div>
-          <div class="stream-sub">Bienvenido a mi comunidad 💜</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="messages">
-      <div class="messages-inner" id="messages">
-        <div class="message">
-          <span class="username">Bienvenido</span>
-          ¡Ponte cómodo y disfruta! 💜
-        </div>
-      </div>
-
-      <div class="chat-input">
-        <input
-          type="text"
-          placeholder="Inicia sesión en Twitch para escribir..."
-          readonly
-          onclick="window.open('https://www.twitch.tv/fonsichu','_blank')">
-      </div>
-    </section>
-
+  <div class="chat">
+    <iframe
+      src="https://www.twitch.tv/embed/fonsichu/chat?parent=fonsichu.github.io&darkpopout">
+    </iframe>
   </div>
-</main>
+
+</div>
 </body>
 </html>
