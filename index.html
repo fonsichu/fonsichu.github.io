@@ -4,122 +4,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fonsichu - Directo</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #101014;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      background: #19191f;
-      padding: 20px;
-      text-align: center;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    header span {
-      color: #53fc18;
-    }
-
-    main {
-      max-width: 1300px;
-      margin: 25px auto;
-      padding: 15px;
-    }
-
-    .stream {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: black;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .buttons a {
-      flex: 1;
-      min-width: 200px;
-      padding: 16px;
-      border-radius: 8px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-    }
-
-    .kick {
-      background: #53b900;
-    }
-
-    .chat {
-      background: #9147ff;
-    }
-
-    .translate {
-      background: #087cf0;
-    }
-  </style>
+  <title>Fonsichu Multichat</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <header>
+    <h1>FONSI<span>CHU</span></h1>
+    <span class="live">● EN DIRECTO</span>
+  </header>
 
-<header>
-  FONSI<span>CHU</span> 🎮
-</header>
+  <main>
+    <section class="stream">
+      <iframe
+        src="https://player.kick.com/fonsichu"
+        title="Directo de Fonsichu"
+        allowfullscreen>
+      </iframe>
+    </section>
 
-<main>
+    <section class="chat">
+      <div class="chat-title">
+        <h2>CHAT UNIFICADO</h2>
+        <span>TWITCH + KICK</span>
+      </div>
 
-  <div class="stream">
-    <iframe
-      src="https://player.kick.com/fonsichu"
-      allowfullscreen>
-    </iframe>
-  </div>
+      <div class="filters">
+        <button data-filter="all" class="active">Todos</button>
+        <button data-filter="twitch">Twitch</button>
+        <button data-filter="kick">Kick</button>
+      </div>
 
-  <div class="buttons">
+      <div id="messages">
+        <p class="system">Conectando con los chats...</p>
+      </div>
 
-    <a class="kick"
-       href="https://kick.com/fonsichu"
-       target="_blank">
-      VER KICK
-    </a>
+      <form id="chatForm">
+        <select id="platform">
+          <option value="twitch">Enviar a Twitch</option>
+          <option value="kick">Enviar a Kick</option>
+        </select>
 
-    <a class="chat"
-       href="https://combinedchat.com/app"
-       target="_blank">
-      CHAT TWITCH + KICK
-    </a>
+        <input
+          id="messageInput"
+          maxlength="500"
+          placeholder="Inicia sesión para escribir..."
+          disabled>
 
-    <a class="translate"
-       href="https://translate.combinedchat.com/"
-       target="_blank">
-      TRADUCIR AL ESPAÑOL
-    </a>
+        <button id="sendButton" disabled>Enviar</button>
+      </form>
 
-  </div>
+      <p id="status">Conectando...</p>
+    </section>
+  </main>
 
-</main>
-
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
